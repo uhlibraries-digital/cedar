@@ -18,3 +18,7 @@
 
 # Ignore database files.
 /config/database.yml
+
+# Ignore other files.
+
+Gemfile.lock
