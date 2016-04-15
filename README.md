@@ -28,7 +28,7 @@ Email: admin@iqvoc
 Password: admin
 ```
 
-### Bacground Jobs
+### Background Jobs
 
 Note that some features like "Import" and "Export" exposed in the Web UI store
 their workload as jobs. You can either issue a job worker that runs continuously
