@@ -1,0 +1,35 @@
+# MySQL
+#   gem install mysql2
+#
+#   Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+
+development:
+  <<: *default
+  database: cedar_development
+  username: root
+  password:
+  host: localhost
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: cedar_test
+  username: root
+  password:
+  host: localhost
+
+production:
+  <<: *default
+  database: cedar_production
+  username: root
+  password:
+  host: localhost

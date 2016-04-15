@@ -6,7 +6,11 @@ University of Houston Libraries vocabulary manager built from [iQvoc](https://gi
 
 Install gems and build the app
 
+Cedar requires [NodeJS](https://nodejs.org/en/) installed to run.
+
 Copy the appropriate `database.yml` file for your setup. For SQLite3, `cp config/database.yml.sqlite3 config/database.yml`. For MySQL, `cp config/database.yml.mysql config/database.yml`. Update the file to match your configuation.
+
+Setup the `config/secrets.yml` file by running `rake secret` and follow the instructions in the `secrets.yml` file.
 
 ```bash
 bundle install
@@ -15,9 +19,30 @@ rake db:migrate
 rake db:seed
 ```
 
-Setup the `config/secrets.yml` file by running `rake secret` and follow the instructions in the `secrets.yml` file.
-
 Once setup you can continue to run the rails server according to your system environment.
+
+Log in with admin rights to get started. Go to Administration section to change account information.
+
+```
+Email: admin@iqvoc
+Password: admin
+```
+
+### Bacground Jobs
+
+Note that some features like "Import" and "Export" exposed in the Web UI store
+their workload as jobs. You can either issue a job worker that runs continuously
+and watches for new jobs via
+
+```
+$ rake jobs:work
+```
+
+or process jobs in a one-off way (in development or via cron):
+
+```
+$ rake jobs:workoff
+```
 
 ## Custumizing
 
