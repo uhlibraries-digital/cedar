@@ -21,4 +21,5 @@
 
 # Ignore other files.
 
+.DS_Store
 Gemfile.lock
