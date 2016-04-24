@@ -2,3 +2,85 @@
   background: asset-url('site-logo.png') top center no-repeat;
   background-size: contain;
 }
+
+.navbar-default {
+  background-color: #c8102e;
+  border-color: #CC102F;
+
+  .navbar-brand, .navbar-brand:hover, .navbar-brand:focus {
+    color: #f0e6b1;
+  }
+
+  .navbar-nav {
+    > li {
+      > a, > a:hover {
+        color: #fff;
+      }
+      &:hover {
+        background-color: #960C22;
+      }
+    }
+
+    > .open {
+      > a, > a:hover, > a:focus {
+        background-color: #960C22;
+        color: #fff;
+      }
+    }
+
+    > .active {
+      > a, > a:hover, > a:focus {
+        background-color: #960C22;
+        color: #fff;
+      }
+    }
+  }
+
+  .navbar-toggle {
+    border-color: #fff;
+    color: #fff;
+
+    &:hover, &:focus {
+      background-color: #960C22;
+    }
+  }
+}
+
+.list-group-item.active {
+  background-color: #E6E6E6;
+  border-color: #E6E6E6;
+  color: #c8102e;
+  
+  &:hover {
+    background-color: #E6E6E6;
+    border-color: #E6E6E6;
+  }
+  &:focus {
+    background-color: #E6E6E6;
+    border-color: #E6E6E6;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navbar-default {
+    .navbar-nav {
+      .open {
+        .dropdown-menu {
+          > li {
+            > a {
+              color: #fff;
+            }
+          }
+
+          > .active {
+            > a, > a:hover, > a:focus {
+              background-color: #E6E6E6;
+              color: #c8102e;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
