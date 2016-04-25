@@ -44,6 +44,10 @@ or process jobs in a one-off way (in development or via cron):
 $ rake jobs:workoff
 ```
 
+### Dependences
+
+Cedar needs [Greens](https://github.com/uhlibraries-digital/greens) installed to mint ARK identifiers
+
 ## Custumizing
 
 You will need to follow the iQvoc [Asset pipeline](https://github.com/innoq/iqvoc/wiki/iQvoc-as-a-Rails-Engine#asset-pipeline) when modifying assets like CSS and JavaScript files.

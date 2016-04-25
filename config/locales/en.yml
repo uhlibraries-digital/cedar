@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  txt:
+    views:
+      instance_configuration:
+        groups:
+          minter: Minter
+        settings:
+          minter_base_url: Base URL
+          minter_api_endpoint: API Endpoint URL
+          minter_api_key: API Key
+          minter_erc_who: ERC Who Label
+

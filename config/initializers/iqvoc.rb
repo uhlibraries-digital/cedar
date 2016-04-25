@@ -2,7 +2,11 @@ require 'iqvoc/cedar/version'
 
 Iqvoc.config do |config|
   config.register_settings({
-    "title" => "Iqvoc Cedar"
+    "title" => "Cedar",
+    "minter.base_url" => "",
+    "minter.api_endpoint" => "",
+    "minter.api_key" => "",
+    "minter.erc_who" => ""
   })
 end
 
