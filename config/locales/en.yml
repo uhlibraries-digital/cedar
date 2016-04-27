@@ -26,6 +26,7 @@ en:
         groups:
           minter: Minter
         settings:
+          site_url: Site URL
           minter_base_url: Base URL
           minter_api_endpoint: API Endpoint URL
           minter_api_key: API Key

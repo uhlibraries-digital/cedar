@@ -3,6 +3,7 @@ require 'iqvoc/cedar/version'
 Iqvoc.config do |config|
   config.register_settings({
     "title" => "Cedar",
+    "site_url" => "",
     "minter.base_url" => "",
     "minter.api_endpoint" => "",
     "minter.api_key" => "",

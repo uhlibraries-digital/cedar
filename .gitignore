@@ -23,3 +23,4 @@
 
 .DS_Store
 Gemfile.lock
+/public/uploads/

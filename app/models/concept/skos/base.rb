@@ -2,8 +2,7 @@ class Concept::SKOS::Base < Concept::Base
 
   belongs_to :ark
 
-  before_create :mint_ark
-  before_save :update_ark
+  include Rails.application.routes.url_helpers
 
   self.rdf_namespace = 'skos'
   self.rdf_class = 'Concept'
@@ -31,35 +30,25 @@ class Concept::SKOS::Base < Concept::Base
     where((col.eq(nil)).or(col.gteq(time)))
   end
 
-  private
-    def mint_ark
-      if (@inline_matches ||= {}).any?
-        @ark = Ark.create(
-          who: Iqvoc.config["minter.erc_who"],
-          when: Time.now.strftime("%Y-%m-%d"), 
-          what: what_label,
-          where: $_URL
-        )
-        @inline_matches["Match::SKOS::ExactMatch"].push(Iqvoc.config["minter.base_url"] + @ark.id)
-      end
-    end
-
-    def update_ark
-      if (@inline_matches ||= {}).any? and @inline_matches.key?("Match::SKOS::ExactMatch")
-        @inline_matches["Match::SKOS::ExactMatch"].each do |url|
-          matches = url.match(/(ark:\/[0-9a-z\/]+)/)
-          if !matches.nil?
-            @ark = Ark.find(matches[0])
-            @ark.what = what_label
-            @ark.save
-          end
-        end
-      end
-    end
-
-    def what_label
+  after_save do |concept|
+    ark_id = concept.inline_match_skos_exact_matches.match(/(ark:\/[0-9a-z\/]+)/).to_s
+    if !ark_id.blank?
+      @ark = Ark.new()
+      @ark.id = ark_id
+      @ark.what = concept.to_s
+      @ark.save
+    elsif concept.rev == 1
       lang = I18n.locale.to_s == 'none' ? nil : I18n.locale.to_s
-      @labelings_by_text['labeling_skos_pref_labels'][lang].to_s
+      w = concept_url(:lang => lang, :id => concept.origin, :format => 'html', :host => Iqvoc.config["site_url"])
+      @ark = Ark.create(
+        who: Iqvoc.config["minter.erc_who"],
+        when: Time.now.strftime("%Y-%m-%d"), 
+        what: concept.to_s,
+        where: w.to_s
+      )
+      @url = Iqvoc.config["minter.base_url"] + @ark.id
+      concept.send("Match::SKOS::ExactMatch".to_relation_name).create(value: @url)
+      #concept.origin = @ark.id.split('/')[2]
     end
-
+  end
 end
