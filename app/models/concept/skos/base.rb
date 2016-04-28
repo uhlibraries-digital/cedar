@@ -31,24 +31,32 @@ class Concept::SKOS::Base < Concept::Base
   end
 
   after_save do |concept|
-    ark_id = concept.inline_match_skos_exact_matches.match(/(ark:\/[0-9a-z\/]+)/).to_s
-    if !ark_id.blank?
+    ark_id = concept_ark_id(concept)
+    if !ark_id.blank? and concept.published?
       @ark = Ark.new()
       @ark.id = ark_id
       @ark.what = concept.to_s
       @ark.save
-    elsif concept.rev == 1
-      lang = I18n.locale.to_s == 'none' ? nil : I18n.locale.to_s
-      w = concept_url(:lang => lang, :id => concept.origin, :format => 'html', :host => Iqvoc.config["site_url"])
+    elsif concept.rev == 1 and ark_id.blank? and concept.published?
       @ark = Ark.create(
         who: Iqvoc.config["minter.erc_who"],
         when: Time.now.strftime("%Y-%m-%d"), 
         what: concept.to_s,
-        where: w.to_s
+        where: concept_where_url(concept.origin)
       )
       @url = Iqvoc.config["minter.base_url"] + @ark.id
       concept.send("Match::SKOS::ExactMatch".to_relation_name).create(value: @url)
-      #concept.origin = @ark.id.split('/')[2]
     end
   end
+
+  def concept_ark_id(concept)
+    concept.inline_match_skos_exact_matches.match(/(ark:\/[0-9a-z\/]+)/).to_s
+  end
+
+  def concept_where_url(origin)
+    host = Iqvoc.config["site_url"].match(/https?:\/\/([^\/]*)/).to_s
+    lang = I18n.locale.to_s == 'none' ? nil : I18n.locale.to_s
+    concept_url(:lang => lang, :id => origin, :format => 'html', :host => host).to_s
+  end
+
 end
