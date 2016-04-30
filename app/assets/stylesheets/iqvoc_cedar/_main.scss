@@ -5,7 +5,6 @@
 
 .onebox {
   background: asset-url('site-logo.png') top center no-repeat;
-  background-size: contain;
 }
 
 .navbar-default {
@@ -87,5 +86,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 535px) {
+  .onebox {
+    background-size: contain;
   }
 }
