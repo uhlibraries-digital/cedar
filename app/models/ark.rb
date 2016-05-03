@@ -16,7 +16,7 @@ class Ark < ActiveRestClient::Base
 
   get :find, "/id/:id"
   put :save, "/id/:id"
-  post :create, "/arks/mint"
+  post :create, "/arks/mint/" + Iqvoc.config['minter.prefix']
 
   def add_authentication_details(name, request)
     request.headers["api-key"] = Iqvoc.config['minter.api_key']

@@ -7,6 +7,7 @@ Iqvoc.config do |config|
     "minter.base_url" => "",
     "minter.api_endpoint" => "",
     "minter.api_key" => "",
+    "minter.prefix" => "",
     "minter.erc_who" => ""
   })
 end
