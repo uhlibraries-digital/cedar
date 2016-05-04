@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.1
+before_install: cp config/database.yml.sqlite3 config/database.yml
+before_script:
+  - bundle exec rake db:drop RAILS_ENV=test
+  - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:migrate RAILS_ENV=test
+branches:
+  only:
+    - master
