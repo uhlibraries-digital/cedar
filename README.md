@@ -1,6 +1,7 @@
 # Cedar
 
 [![Code Climate](https://codeclimate.com/github/uhlibraries-digital/cedar/badges/gpa.svg)](https://codeclimate.com/github/uhlibraries-digital/cedar)
+[![Build Status](https://travis-ci.org/uhlibraries-digital/cedar.svg?branch=master)](https://travis-ci.org/uhlibraries-digital/cedar)
 
 University of Houston Libraries vocabulary manager built from [iQvoc](https://github.com/innoq/iqvoc).
 
