@@ -56,7 +56,7 @@ class Concept::SKOS::Base < Concept::Base
   def concept_where_url(origin)
     host = Iqvoc.config["site_url"].match(/https?:\/\/([^\/]*)/).to_s
     lang = I18n.locale.to_s == 'none' ? nil : I18n.locale.to_s
-    concept_url(:lang => lang, :id => origin, :format => 'html', :host => host).to_s
+    concept_url(:lang => lang, :id => origin, :host => host).to_s
   end
 
 end
