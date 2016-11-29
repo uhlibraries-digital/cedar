@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1
+  - 2.2.2
 before_install: cp config/database.yml.sqlite3 config/database.yml
 before_script:
   - bundle exec rake db:drop RAILS_ENV=test
