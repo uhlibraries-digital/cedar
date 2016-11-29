@@ -38,14 +38,19 @@ class Concept::SKOS::Base < Concept::Base
       @ark.what = concept.to_s
       @ark.save
     elsif concept.rev == 1 and ark_id.blank? and concept.published?
-      @ark = Ark.create(
-        who: Iqvoc.config["minter.erc_who"],
-        when: Time.now.strftime("%Y-%m-%d"), 
-        what: concept.to_s,
-        where: concept_where_url(concept.origin)
-      )
-      @url = Iqvoc.config["minter.base_url"] + @ark.id
-      concept.send("Match::SKOS::ExactMatch".to_relation_name).create(value: @url)
+      begin
+        @ark = Ark.create(
+          who: Iqvoc.config["minter.erc_who"],
+          when: Time.now.strftime("%Y-%m-%d"), 
+          what: concept.to_s,
+          where: concept_where_url(concept.origin)
+        )
+        @url = Iqvoc.config["minter.base_url"] + @ark.id
+        concept.send("Match::SKOS::ExactMatch".to_relation_name).create(value: @url)
+      rescue Flexirest::HTTPClientException, Flexirest::HTTPServerException => e
+        Rails.logger.error("API returned #{e.status} : #{e.result.message}")
+        return
+      end
     end
   end
 

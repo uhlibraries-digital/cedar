@@ -1,4 +1,4 @@
-class ArkProxy < ActiveRestClient::ProxyBase
+class ArkProxy < Flexirest::ProxyBase
   get "/id/:id" do
     response = passthrough
     translate(response) do |body|
@@ -8,10 +8,12 @@ class ArkProxy < ActiveRestClient::ProxyBase
   end
 end
 
-class Ark < ActiveRestClient::Base
+class Ark < Flexirest::Base
   proxy ArkProxy
   base_url Iqvoc.config['minter.api_endpoint']
+  
   before_request :add_authentication_details
+  
   perform_caching false
 
   get :find, "/id/:id"
