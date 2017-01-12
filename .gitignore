@@ -24,3 +24,4 @@
 .DS_Store
 Gemfile.lock
 /public/uploads/
+/public/bcdams-map/
