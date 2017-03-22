@@ -25,3 +25,5 @@
 Gemfile.lock
 /public/uploads/
 /public/bcdams-map/
+
+.ruby-version
