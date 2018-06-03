@@ -54,7 +54,7 @@
   background-color: #E6E6E6;
   border-color: #E6E6E6;
   color: #c8102e;
-  
+
   &:hover {
     background-color: #E6E6E6;
     border-color: #E6E6E6;
@@ -63,6 +63,10 @@
     background-color: #E6E6E6;
     border-color: #E6E6E6;
   }
+}
+
+.entity_list li {
+  float: none;
 }
 
 @media (max-width: 1199px) {
