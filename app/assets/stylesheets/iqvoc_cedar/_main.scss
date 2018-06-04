@@ -69,6 +69,10 @@
   float: none;
 }
 
+.sections .entity_list li:after, .relation-body .entity_list li:after {
+  content: "";
+}
+
 @media (max-width: 1199px) {
   .navbar-default {
     .navbar-nav {
