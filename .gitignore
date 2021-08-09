@@ -16,13 +16,9 @@
 !/log/.keep
 /tmp
 
-# Ignore database files.
-/config/database.yml
-
 # Ignore other files.
 
 .DS_Store
-Gemfile.lock
 /public/uploads/
 /public/bcdams-map/
 

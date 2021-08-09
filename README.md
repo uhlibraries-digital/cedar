@@ -5,25 +5,44 @@
 
 University of Houston Libraries vocabulary manager built from [iQvoc](https://github.com/innoq/iqvoc).
 
-## Installation
+## Manual Installation
 
 Install gems and build the app
 
 Cedar requires [NodeJS](https://nodejs.org/en/) installed to run.
 
-Copy the appropriate `database.yml` file for your setup. For SQLite3, `cp config/database.yml.sqlite3 config/database.yml`. For MySQL, `cp config/database.yml.mysql config/database.yml`. Update the file to match your configuation.
+Setup the appropriate `database.yml` file for your setup.
 
 Setup the `config/secrets.yml` file by running `rake secret` and follow the instructions in the `secrets.yml` file.
 
 ```bash
 bundle install
-rake db:create
 rake db:migrate
 rake db:seed
 ```
 
 Once setup you can continue to run the rails server according to your system environment.
 
+## Docker
+
+Inital setup for docker run these commands
+
+```
+docker-compose run --rm app rake db:migrate
+docker-compose run --rm app rake db:seed 
+```
+
+Run Cedar stack
+```
+docker-compose up
+```
+
+Stop Cedar stack
+```
+docker-compose stop
+```
+
+## Usage
 Log in with admin rights to get started. Go to Administration section to change account information.
 
 ```
