@@ -9,3 +9,4 @@ gem 'mysql2', '~> 0.4.5'
 
 # Fixes a bug where iQvoc 4.11.1 doesn't include kaminari version constraints
 gem 'kaminari', '~> 0.16.3'
+gem 'activerecord-nulldb-adapter'
