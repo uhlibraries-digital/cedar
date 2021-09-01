@@ -1,5 +1,7 @@
 FROM ruby:2.2.4
 
+ENV APP_PATH=/cedar-app
+
 RUN apt-get update -q && apt-get install -y \
   build-essential \
   nodejs
