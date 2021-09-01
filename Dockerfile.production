@@ -10,6 +10,9 @@ WORKDIR /cedar-app
 ADD Gemfile /cedar-app/Gemfile
 ADD Gemfile.lock /cedar-app/Gemfile.lock
 
+COPY ./entrypoint-production.sh /usr/local/bin/entrypoint-production.sh
+RUN chmod +x /usr/local/bin/entrypoint-production.sh
+
 RUN gem install bundler -v 1.17.3  && bundle install
 ADD . /cedar-app
 
@@ -22,4 +25,4 @@ ENV RAILS_ENV=production \
 
 EXPOSE 3000
 HEALTHCHECK CMD curl --fail http://localhost:3000/ || exit 1
-CMD ["rails", "s", "-p", "3000", "-b", "0.0.0.0"]
+CMD ["entrypoint-production.sh"]
