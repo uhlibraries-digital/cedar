@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  languages:
+    ru: Russian
+    zh: Chinese
   txt:
     views:
       instance_configuration:
