@@ -1,0 +1,1 @@
+//= require iqvoc_cedar/remove_change_note_button.js
