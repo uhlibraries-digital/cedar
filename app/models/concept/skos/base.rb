@@ -50,6 +50,8 @@ class Concept::SKOS::Base < Concept::Base
       rescue Flexirest::HTTPClientException, Flexirest::HTTPServerException => e
         Rails.logger.error("API returned #{e.status} : #{e.result.message}")
         return
+      rescue => e
+        Rails.logger.error("Error posting ARK: #{e.message}")
       end
     end
   end
