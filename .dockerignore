@@ -1,0 +1,14 @@
+.bundle
+.git
+.DS_Store
+.gitignore
+.env
+.env.db
+Dockerfile
+docker-compose.yml
+public/assets
+public/bcdams-map
+public/export
+public/uploads
+tmp/*
+log/*
