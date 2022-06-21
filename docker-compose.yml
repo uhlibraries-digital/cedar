@@ -5,7 +5,14 @@ services:
     build: .
     entrypoint: 'docker-entrypoint.sh'
     command: ['rails', 's', '-p', '3000', '-b', '0.0.0.0']
-    env_file: .env
+    environment:
+      - DATABASE_USER=cedar
+      - DATABASE_PASSWORD=cedar
+      - DATABASE_NAME=cedar_development
+      - DATABASE_HOST=db
+      - RAILS_ENV=development
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_CACHE_STORE_URL=memcache
     ports:
       - 3000:3000
     depends_on:
@@ -18,7 +25,11 @@ services:
   db:
     image: mysql:8.0
     restart: always
-    env_file: .env.db
+    environment:
+      - MYSQL_USER=cedar
+      - MYSQL_PASSWORD=cedar
+      - MYSQL_DATABASE=cedar_development
+      - MYSQL_ROOT_PASSWORD=my-secret-password
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     volumes: 
       - db:/var/lib/mysql
@@ -30,7 +41,14 @@ services:
     build: .
     entrypoint: 'docker-entrypoint.sh'
     command: ['rake', 'jobs:work']
-    env_file: .env
+    environment:
+      - DATABASE_USER=cedar
+      - DATABASE_PASSWORD=cedar
+      - DATABASE_NAME=cedar_development
+      - DATABASE_HOST=db
+      - RAILS_ENV=development
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_CACHE_STORE_URL=memcache
     depends_on:
       - db
       - memcached
