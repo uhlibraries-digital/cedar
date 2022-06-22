@@ -36,7 +36,11 @@ class Concept::SKOS::Base < Concept::Base
       @ark = Ark.new()
       @ark.id = ark_id
       @ark.what = concept.to_s
-      @ark.save
+      begin
+        @ark.save
+      rescue => e
+        Rails.logger.error("Unable to save ARK: #{e.message}")
+      end
     elsif concept.rev == 1 and ark_id.blank? and concept.published?
       begin
         @ark = Ark.create(
