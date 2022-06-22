@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220621132532) do
+ActiveRecord::Schema.define(version: 20220622100345) do
 
   create_table "collection_members", force: :cascade do |t|
     t.integer "collection_id", limit: 4
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(version: 20220621132532) do
     t.datetime "finished_at"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.boolean  "spoiled",                   default: false
   end
 
   add_foreign_key "collection_members", "concepts", column: "collection_id", on_update: :cascade

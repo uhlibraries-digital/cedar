@@ -13,6 +13,14 @@ class VocabularyExport < ActiveRecord::Base
     save!
   end
 
+  def failed?
+    return self.finished_at? && !self.success
+  end
+
+  def processing?
+    return self.finished_at.nil?
+  end
+
   def filename
     File.join(Iqvoc.export_path, "vocabulary-#{self.token.to_s}.ttl")
   end

@@ -54,6 +54,15 @@ class Concept::SKOS::Base < Concept::Base
         Rails.logger.error("Error posting ARK: #{e.message}")
       end
     end
+
+    if concept.published?
+      export = VocabularyExport.order('id DESC').first
+      if !export.nil?
+        export.spoiled = true
+        export.save!
+      end
+    end
+
   end
 
   def concept_ark_id(concept)
