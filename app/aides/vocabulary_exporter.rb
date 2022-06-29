@@ -35,7 +35,7 @@ class VocabularyExporter
     @logger.info "Starting vocabulary export..."
     @logger.info "file_path = #{@file_path}"
 
-    depth = 5
+    depth = -1
     scope = Iqvoc::Concept.base_class.published.ordered_by_pref_label
 
     root_concepts = scope.tops.load
